@@ -1,3 +1,4 @@
+import pprint
 gen = [3,10] # generator = [x,y]
 modulo = 23
 a_coeff = 1
@@ -34,12 +35,13 @@ def main():
     point = point_addition(gen,gen) 
     index = 1
     group = {}
-    group[0] = gen
+    group[f"{index}p"]=gen
     while index != 33:
-        group[index]=point
         index = index + 1
+        group[f"{index}p"]=point
         point = point_addition(point,gen) 
-        print(f"{point}={group[index-1]}+{gen}[x,y]")
+        point_prev =group[f"{index}p"]
+        print(f"p{index}:{point}={point_prev}+{gen}[x,y]")
     print(f"group: {group}")
 
 
