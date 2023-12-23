@@ -1,7 +1,16 @@
 import pprint
-gen = [3,10] # generator = [x,y]
-modulo = 23
-a_coeff = 1
+import argparse
+
+parser = argparse.ArgumentParser(description="Elgamal Elliptical Curve Addition Calculator.")
+parser.add_argument('-x', type=int, required=True, help= "X Coordinate for Generator")
+parser.add_argument('-y', type=int, required=True, help= "Y Coordinate for Generator")
+parser.add_argument('-m', '-modulo', type=int, required=True, help= "Modulo for Elliptical Curve")
+parser.add_argument('-a', type=int, required=True, help= "a Coefficient for Curve")
+args = parser.parse_args()
+
+gen = [args.x,args.y]
+modulo = args.m 
+a_coeff = args.a
 
 
 def point_addition(p_1,p_2):
@@ -45,4 +54,5 @@ def main():
     print(f"group: {group}")
 
 
-main()
+if __name__ == '__main__':
+    main()
