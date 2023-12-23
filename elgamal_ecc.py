@@ -6,6 +6,7 @@ parser.add_argument('-x', type=int, required=True, help= "X Coordinate for Gener
 parser.add_argument('-y', type=int, required=True, help= "Y Coordinate for Generator")
 parser.add_argument('-m', '-modulo', type=int, required=True, help= "Modulo for Elliptical Curve")
 parser.add_argument('-a', type=int, required=True, help= "a Coefficient for Curve")
+parser.add_argument('-p', type=int, required=True, help= "Number of Points Calculated")
 args = parser.parse_args()
 
 gen = [args.x,args.y]
@@ -29,7 +30,7 @@ def point_addition(p_1,p_2):
         delta_x = (p_2[0] - p_1[0]) % modulo 
         delta_y = (p_2[1] - p_1[1]) % modulo
         if 0==delta_x:
-            return "inf"
+            return "incientf"
         lambda_coff = (delta_y)*(pow(delta_x,-1,modulo))
         lambda_coff =  lambda_coff % modulo
 
@@ -45,7 +46,7 @@ def main():
     index = 1
     group = {}
     group[f"{index}p"]=gen
-    while index != 33:
+    while index != args.p:
         index = index + 1
         group[f"{index}p"]=point
         point = point_addition(point,gen) 
